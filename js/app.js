@@ -872,7 +872,6 @@ function file_code(path) {
       </div>
   </div>
   <button onclick="copyFunction()" onmouseout="outFunc()" class="btn btn-success"> <span class="tooltiptext" id="myTooltip">Copy</span> </button></div><br></div>
-  <script src="https://unpkg.com/srt-webvtt@1.0.1/index.js"</script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/prism.js" integrity="sha256-fZOd7N/oofoKcO92RzxvC0wMm+EvsKyRT4nmcmQbgzU=" crossorigin="anonymous"></script>
 `;
     $('#content').html(content);
@@ -891,13 +890,14 @@ function file_code(path) {
 function file_video(path) {
     var name = path.split('/').pop();
     var decodename = unescape(name);
-    var caption = name.slice(0, name.lastIndexOf('.srt'))
-    const vttConverter = new VTTConverter(caption); // the constructor accepts a parameer of SRT subtitle blob/file object
+    var caption = name.slice(0, name.lastIndexOf('.'))
+    var vttConverter = new VTTConverter(caption); // the constructor accepts a parameer of SRT subtitle blob/file object
 
     vttConverter
     .getURL()
     .then(function(ggurl) { // Its a valid url that can be used further
-    var vttConverter = ggurl;
+      var ggtrck = document.replaceChild(vttConverter)
+      ggtrck = ggurl;
     })
     .catch(function(err) {
     console.error(err);
